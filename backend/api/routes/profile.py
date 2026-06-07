@@ -71,7 +71,6 @@ def _build_profile_sync(
 @router.get("/{username}", response_model=UserProfile)
 async def get_profile(
     username: str,
-    current_user: CurrentUser,
     github_service: GitHubDep,
     cache_service: CacheDep,
     analytics_service: AnalyticsDep,

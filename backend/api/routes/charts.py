@@ -20,7 +20,6 @@ class ChartType(str, Enum):
 async def get_chart(
     username: str,
     chart_type: ChartType,
-    current_user: CurrentUser,
     cache_service: CacheDep,
     chart_service: ChartDep,
 ):

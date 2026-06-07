@@ -3,7 +3,6 @@ from pydantic import BaseModel
 from models.repo import LanguageBreakdown, RepoInfo
 from models.stats import ActivityHeatmap, CommitStats, ProfileSummary
 
-
 class UserProfile(BaseModel):
     
     username: str

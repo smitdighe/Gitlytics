@@ -2,7 +2,7 @@ import asyncio
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, HTTPException
-from api.dependencies import AnalyticsDep, CacheDep, GitHubDep
+from api.dependencies import AnalyticsDep, CacheDep, CurrentUser, GitHubDep
 from api.routes.profile import _build_profile_sync
 from models.profile import UserProfile
 from models.stats import CompareResult
@@ -19,7 +19,7 @@ async def _fetch_profile(
     cache_service,
     analytics_service,
 ) -> UserProfile:
-    
+
     cached = cache_service.get(username)
     if cached is not None:
         return cached
@@ -46,11 +46,12 @@ def _compare_stat(val1, val2, user1: str, user2: str) -> dict:
 async def compare_users(
     u1: str,
     u2: str,
+    current_user: CurrentUser,
     github_service: GitHubDep,
     cache_service: CacheDep,
     analytics_service: AnalyticsDep,
 ):
-    
+
     results = await asyncio.gather(
         _fetch_profile(u1, github_service, cache_service, analytics_service),
         _fetch_profile(u2, github_service, cache_service, analytics_service),

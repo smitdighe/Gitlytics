@@ -14,6 +14,12 @@ class Settings(BaseSettings):
     APP_ENV: str = "development"
     CORS_ORIGINS: List[str] = ["http://localhost:3000"]
 
+    jwt_secret_key: str = ""
+    jwt_algorithm: str = "HS256"
+    access_token_expire_minutes: int = 15
+    refresh_token_expire_days: int = 7
+    max_login_attempts: int = 5
+
     model_config = {
         "env_file": ".env",
         "env_file_encoding": "utf-8",

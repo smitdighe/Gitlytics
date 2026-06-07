@@ -6,7 +6,6 @@ from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
-
 class CacheService:
 
     def __init__(self, db: Database, ttl_seconds: int) -> None:

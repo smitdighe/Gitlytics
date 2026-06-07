@@ -3,14 +3,11 @@ from enum import Enum
 
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
-
-from api.dependencies import CacheDep, ChartDep
+from api.dependencies import CacheDep, ChartDep, CurrentUser
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
-
 router = APIRouter(prefix="/api/charts", tags=["charts"])
-
 
 class ChartType(str, Enum):
     languages = "languages"
@@ -23,10 +20,11 @@ class ChartType(str, Enum):
 async def get_chart(
     username: str,
     chart_type: ChartType,
+    current_user: CurrentUser,
     cache_service: CacheDep,
     chart_service: ChartDep,
 ):
-    
+
     profile = cache_service.get(username)
     if profile is None:
         raise HTTPException(

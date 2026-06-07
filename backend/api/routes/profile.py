@@ -2,7 +2,7 @@ import asyncio
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, HTTPException
-from api.dependencies import AnalyticsDep, CacheDep, GitHubDep
+from api.dependencies import AnalyticsDep, CacheDep, CurrentUser, GitHubDep
 from models.profile import UserProfile
 from models.repo import RepoInfo
 from utils.exceptions import GitHubRateLimitError, UserNotFoundError
@@ -17,7 +17,7 @@ def _build_profile_sync(
     github_service,
     analytics_service,
 ) -> UserProfile:
-    
+
     user = github_service.get_user(username)
     repos = github_service.get_repos(user)
 
@@ -71,11 +71,12 @@ def _build_profile_sync(
 @router.get("/{username}", response_model=UserProfile)
 async def get_profile(
     username: str,
+    current_user: CurrentUser,
     github_service: GitHubDep,
     cache_service: CacheDep,
     analytics_service: AnalyticsDep,
 ):
-    
+
     cached = cache_service.get(username)
     if cached is not None:
         logger.info("Serving cached profile for %s", username)

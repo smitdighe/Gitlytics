@@ -6,10 +6,8 @@ class CommitStats(BaseModel):
     most_active_day: str
     most_active_hour: int
 
-
 class ActivityHeatmap(BaseModel):
     data: dict[str, dict[str, int]]
-
 
 class ProfileSummary(BaseModel):
     total_repos: int
@@ -18,7 +16,6 @@ class ProfileSummary(BaseModel):
     top_language: str | None = None
     account_age_days: int
     public_gists: int
-
 
 class CompareResult(BaseModel):
     user1: str

@@ -13,7 +13,6 @@ class RepoInfo(BaseModel):
     updated_at: datetime
     url: str
 
-
 class LanguageBreakdown(BaseModel):
     language: str
     percentage: float

@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pydantic-settings
+PyGithub
+pandas
+matplotlib
+seaborn
+python-dotenv
+aiofiles

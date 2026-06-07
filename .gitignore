@@ -1,0 +1,67 @@
+# ─── Python ───────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+wheels/
+sdist/
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# ─── Environment variables ────────────────────────
+.env
+.env.local
+.env.production
+.env.development
+
+# ─── Runtime data (auto-created) ─────────────────
+data/cache.db
+data/charts/
+data/
+
+# ─── Frontend ─────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.npm/
+
+# Build output
+frontend/dist/
+frontend/build/
+frontend/.cache/
+
+# ─── IDE & OS ─────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Testing & Coverage ───────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+coverage/
+*.lcov
+
+# ─── Logs ─────────────────────────────────────────
+*.log
+logs/
+
+# ─── Misc ─────────────────────────────────────────
+*.bak
+*.tmp
+.cache/

@@ -67,35 +67,19 @@ export interface ProfileData {
 }
 
 export interface CompareData {
-  user1: {
-    profile: GitHubProfile;
-    stats: {
-      total_stars: number;
-      total_forks: number;
-      total_commits: number;
-      top_language: string | null;
-      account_age_days: number;
-    };
-  };
-  user2: {
-    profile: GitHubProfile;
-    stats: {
-      total_stars: number;
-      total_forks: number;
-      total_commits: number;
-      top_language: string | null;
-      account_age_days: number;
-    };
-  };
-  comparison: {
-    stars: 'user1' | 'user2' | 'tie';
-    repos: 'user1' | 'user2' | 'tie';
-    forks: 'user1' | 'user2' | 'tie';
-    followers: 'user1' | 'user2' | 'tie';
-    commits: 'user1' | 'user2' | 'tie';
-    account_age: 'user1' | 'user2' | 'tie';
+  user1: string;
+  user2: string;
+  stats: {
+    total_stars: { user1: number; user2: number; winner: string };
+    total_repos: { user1: number; user2: number; winner: string };
+    total_forks: { user1: number; user2: number; winner: string };
+    followers: { user1: number; user2: number; winner: string };
+    total_commits: { user1: number; user2: number; winner: string };
+    account_age_days: { user1: number; user2: number; winner: string };
+    top_language: { user1: string | null; user2: string | null; winner: string };
   };
 }
+
 
 export const profileApi = {
   getProfile: async (username: string): Promise<ProfileData> => {

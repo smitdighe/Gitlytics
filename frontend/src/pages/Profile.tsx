@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState, useCallback } from 'react';
-import { MapPin, Link as LinkIcon, Users, Share2, ExternalLink, ImageOff, Clock } from 'lucide-react';
+import { MapPin, Link as LinkIcon, Users, Share2, ExternalLink, ImageOff } from 'lucide-react';
 import { useProfile } from '../hooks/useProfile';
 import { Navbar } from '../components/Navbar';
 import { Skeleton, ProfileSkeleton } from '../components/Skeleton';
@@ -202,10 +202,6 @@ export default function Profile() {
                       <span className="text-xs">following</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-muted">
-                    <Clock className="w-4 h-4" />
-                    <span>Joined {new Date(profile.fetched_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
-                  </div>
                 </motion.div>
 
                 <div className="border-t border-dark-50 pt-6 space-y-1">
@@ -241,8 +237,8 @@ export default function Profile() {
                     <div className="space-y-3">
                       {languages.slice(0, 10).map((lang, i) => (
                         <LanguageBar
-                          key={lang.name}
-                          name={lang.name}
+                          key={lang.language}
+                          name={lang.language}
                           percentage={lang.percentage}
                           index={i}
                         />

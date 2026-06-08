@@ -135,13 +135,13 @@ export default function Compare() {
   }
 
   const stats = [
-    { label: 'Total Stars', u1Value: data.user1.stats.total_stars, u2Value: data.user2.stats.total_stars, winner: data.comparison.stars },
-    { label: 'Total Repos', u1Value: data.user1.profile.public_repos, u2Value: data.user2.profile.public_repos, winner: data.comparison.repos },
-    { label: 'Total Forks', u1Value: data.user1.stats.total_forks, u2Value: data.user2.stats.total_forks, winner: data.comparison.forks },
-    { label: 'Followers', u1Value: data.user1.profile.followers, u2Value: data.user2.profile.followers, winner: data.comparison.followers },
-    { label: 'Total Commits', u1Value: data.user1.stats.total_commits, u2Value: data.user2.stats.total_commits, winner: data.comparison.commits },
-    { label: 'Account Age', u1Value: formatAccountAge(data.user1.stats.account_age_days), u2Value: formatAccountAge(data.user2.stats.account_age_days), winner: data.comparison.account_age, isString: true },
-    { label: 'Top Language', u1Value: data.user1.stats.top_language, u2Value: data.user2.stats.top_language, winner: null, isLanguage: true },
+    { label: 'Total Stars', u1Value: data.stats.total_stars.user1, u2Value: data.stats.total_stars.user2, winner: data.stats.total_stars.winner },
+    { label: 'Total Repos', u1Value: data.stats.total_repos.user1, u2Value: data.stats.total_repos.user2, winner: data.stats.total_repos.winner },
+    { label: 'Total Forks', u1Value: data.stats.total_forks.user1, u2Value: data.stats.total_forks.user2, winner: data.stats.total_forks.winner },
+    { label: 'Followers', u1Value: data.stats.followers.user1, u2Value: data.stats.followers.user2, winner: data.stats.followers.winner },
+    { label: 'Total Commits', u1Value: data.stats.total_commits.user1, u2Value: data.stats.total_commits.user2, winner: data.stats.total_commits.winner },
+    { label: 'Account Age (days)', u1Value: formatAccountAge(data.stats.account_age_days.user1), u2Value: formatAccountAge(data.stats.account_age_days.user2), winner: data.stats.account_age_days.winner, isString: true },
+    { label: 'Top Language', u1Value: data.stats.top_language.user1, u2Value: data.stats.top_language.user2, winner: null, isLanguage: true },
   ];
 
   return (
@@ -175,17 +175,12 @@ export default function Compare() {
                 transition={{ delay: 0.1, duration: 0.4 }}
               >
                 <img
-                  src={data.user1.profile.avatar_url}
-                  alt={data.user1.profile.username}
+                  src={`https://github.com/${data.user1}.png`}
+                  alt={data.user1}
                   className="w-16 h-16 rounded-full border border-dark-50"
                   loading="lazy"
                 />
-                <div>
-                  {data.user1.profile.name && (
-                    <p className="font-syne font-semibold text-white">{data.user1.profile.name}</p>
-                  )}
-                  <p className="font-mono text-muted text-sm">@{data.user1.profile.username}</p>
-                </div>
+                <p className="font-mono text-white font-semibold">@{data.user1}</p>
               </motion.div>
 
               <motion.span
@@ -203,15 +198,10 @@ export default function Compare() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1, duration: 0.4 }}
               >
-                <div className="text-right">
-                  {data.user2.profile.name && (
-                    <p className="font-syne font-semibold text-white">{data.user2.profile.name}</p>
-                  )}
-                  <p className="font-mono text-muted text-sm">@{data.user2.profile.username}</p>
-                </div>
+                <p className="font-mono text-white font-semibold">@{data.user2}</p>
                 <img
-                  src={data.user2.profile.avatar_url}
-                  alt={data.user2.profile.username}
+                  src={`https://github.com/${data.user2}.png`}
+                  alt={data.user2}
                   className="w-16 h-16 rounded-full border border-dark-50"
                   loading="lazy"
                 />
@@ -221,7 +211,7 @@ export default function Compare() {
             <div className="border border-dark-50 rounded-sm overflow-hidden">
               <div className="grid grid-cols-[1fr_100px_auto_100px_1fr] bg-dark-100 border-b border-dark-50">
                 <div className="py-3 px-4 text-right text-sm font-mono text-white font-semibold">
-                  @{data.user1.profile.username}
+                  @{data.user1}
                 </div>
                 <div></div>
                 <div className="py-3 px-2 text-center text-xs text-muted">
@@ -229,7 +219,7 @@ export default function Compare() {
                 </div>
                 <div></div>
                 <div className="py-3 px-4 text-left text-sm font-mono text-white font-semibold">
-                  @{data.user2.profile.username}
+                  @{data.user2}
                 </div>
               </div>
 
@@ -306,17 +296,17 @@ export default function Compare() {
 
             <div className="flex justify-around gap-8 mt-8">
               <Link
-                to={`/profile/${data.user1.profile.username}`}
+                to={`/profile/${data.user1}`}
                 className="text-sm text-muted hover:text-accent transition-colors duration-200 flex items-center gap-1"
               >
-                View @{data.user1.profile.username}'s Profile
+                View @{data.user1}'s Profile
                 <ChevronRight className="w-4 h-4" />
               </Link>
               <Link
-                to={`/profile/${data.user2.profile.username}`}
+                to={`/profile/${data.user2}`}
                 className="text-sm text-muted hover:text-accent transition-colors duration-200 flex items-center gap-1"
               >
-                View @{data.user2.profile.username}'s Profile
+                View @{data.user2}'s Profile
                 <ChevronRight className="w-4 h-4" />
               </Link>
             </div>

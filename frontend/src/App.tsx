@@ -1,0 +1,90 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
+import { useAuthStore } from './store/authStore';
+import { useAuthCheck } from './hooks/useAuth';
+
+import Landing from './pages/Landing';
+import Auth from './pages/Auth';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import Compare from './pages/Compare';
+import { ProtectedRoute } from './components/ProtectedRoute';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
+
+function AuthRedirect() {
+  const { isAuthenticated, isLoading } = useAuthStore();
+  useAuthCheck();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-dark flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-dark-50 border-t-accent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
+  return <Landing />;
+}
+
+export default function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<AuthRedirect />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile/:username"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/compare"
+            element={
+              <ProtectedRoute>
+                <Compare />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: '#1a1a1a',
+            color: '#fff',
+            border: '1px solid #2a2a2a',
+            fontFamily: 'Manrope, sans-serif',
+          },
+        }}
+      />
+    </QueryClientProvider>
+  );
+}

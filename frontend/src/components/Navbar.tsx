@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import { authApi } from '../api/auth';
 import { GitBranch, LogOut } from 'lucide-react';
@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 
 export function Navbar() {
   const { user, logout } = useAuthStore();
-  const navigate = useNavigate();
   const { scrollY } = useScroll();
   const borderColor = useTransform(scrollY, [0, 50], ['rgba(26,26,26,0)', 'rgba(42,42,42,1)']);
   const backdropBlur = useTransform(scrollY, [0, 50], [0, 12]);
@@ -17,7 +16,7 @@ export function Navbar() {
       await authApi.logout();
       logout();
       toast.success('Logged out successfully');
-      navigate('/');
+      window.location.href = '/';
     } catch {
       toast.error('Failed to logout');
     }

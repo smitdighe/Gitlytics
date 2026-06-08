@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 import { GitBranch, BarChart2, Users, GitMerge } from 'lucide-react';
 
-const heroWords = ['GitHub,', 'analysed.'];
+const heroWords = ['Any GitHub,', 'decoded.'];
 
 const features = [
   {
@@ -68,7 +68,7 @@ export default function Landing() {
               },
             }}
           >
-            {heroWords.map((word, _index) => (
+            {heroWords.map((word) => (
               <motion.span
                 key={word}
                 className="inline-block mr-4 last:mr-0"
@@ -92,7 +92,7 @@ export default function Landing() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           >
-            Beautiful visualizations and insights for any GitHub profile.
+            Know any developer in 30 seconds.
           </motion.p>
 
           <motion.div

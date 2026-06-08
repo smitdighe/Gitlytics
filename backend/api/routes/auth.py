@@ -27,7 +27,7 @@ def _set_refresh_cookie(
         key="refresh_token",
         value=raw_token,
         httponly=True,
-        secure=True,
+        secure=False,
         samesite="lax",
         max_age=max_age_days * 86400,
     )

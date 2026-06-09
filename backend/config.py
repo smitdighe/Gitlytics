@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     DB_PATH: str = "data/cache.db"
     CHART_DIR: str = "data/charts"
     APP_ENV: str = "development"
-    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+    CORS_ORIGINS: str = "http://localhost:5173"
 
     jwt_secret_key: str = ""
     jwt_algorithm: str = "HS256"

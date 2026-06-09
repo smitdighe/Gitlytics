@@ -9,11 +9,9 @@
  ╚═════╝  ╚═╝    ╚═╝    ╚══════╝  ╚═╝        ╚═╝    ╚═╝  ╚═════╝ ╚══════╝
 </pre>
 
-# Any GitHub, decoded.
+### Any GitHub, decoded.
  
 </div>
-
-## Know any developer in 30 seconds.
 
 > 🌐 **Live Demo:** https://gitlytics-red.vercel.app/
 
@@ -31,17 +29,17 @@
   <tr>
     <td align="center" width="280">
       <h3>📊</h3>
-      <b>Visual Analytics</b><br/><br/>
+      <b>Visual Analytics</b><br/>
       <sub>Beautiful charts for language distribution, commit frequency, and activity heatmaps</sub>
     </td>
     <td align="center" width="280">
       <h3>🤼</h3>
-      <b>Profile Comparison</b><br/><br/>
+      <b>Profile Comparison</b><br/>
       <sub>Compare two GitHub profiles side-by-side to contrast stars, forks, and commit habits</sub>
     </td>
     <td align="center" width="280">
       <h3>🔗</h3>
-      <b>Shareable Dashboards</b><br/><br/>
+      <b>Shareable Dashboards</b><br/>
       <sub>Generate secure, unique sharing links to show off your developer profile to others</sub>
     </td>
   </tr>
@@ -49,17 +47,17 @@
   <tr>
     <td align="center" width="280">
       <h3>⚡</h3>
-      <b>High Performance</b><br/><br/>
+      <b>High Performance</b><br/>
       <sub>Smart backend caching mechanisms to minimize GitHub API rate limits and speed up load times</sub>
     </td>
     <td align="center" width="280">
       <h3>🔐</h3>
-      <b>Authentication</b><br/><br/>
+      <b>Authentication</b><br/>
       <sub>Secure user registration, login, and robust JWT-based session management</sub>
     </td>
     <td align="center" width="280">
       <h3>📱</h3>
-      <b>Responsive UI</b><br/><br/>
+      <b>Responsive UI</b><br/>
       <sub>A modern, mobile-friendly interface built specifically with React and Tailwind CSS</sub>
     </td>
   </tr>
@@ -123,6 +121,11 @@ Gitlytics/
 > 💡 **Want the full experience?** Because Gitlytics dives deep into commit histories and repository stats, you'll need to drop a GitHub Personal Access Token (PAT) in your `.env` to keep the API rate limits happy!
 
 ### Prerequisites
+
+Make sure you have the following installed:
+- Node.js (v18+ recommended)
+- Python (v3.10+ recommended)
+- A GitHub account (to generate your PAT)
 
 ### 1. Clone the Repository
 

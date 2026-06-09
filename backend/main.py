@@ -1,3 +1,4 @@
+import os
 import traceback
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -17,7 +18,6 @@ from utils.exceptions import GitHubRateLimitError, UserNotFoundError
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
-
 limiter = Limiter(key_func=get_remote_address)
 
 app = FastAPI(
@@ -29,10 +29,18 @@ app = FastAPI(
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
+
 settings = get_settings()
+
+_raw_cors = os.getenv("CORS_ORIGINS", "")
+if _raw_cors:
+    _cors_origins = [o.strip().strip('"').strip("'") for o in _raw_cors.strip("[]").split(",") if o.strip()]
+else:
+    _cors_origins = settings.CORS_ORIGINS
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
+    allow_origins=_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -4,7 +4,8 @@ from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import numpy as np
 import seaborn as sns
 
@@ -51,7 +52,9 @@ class ChartService:
                 return path
 
             self._apply_style()
-            fig, ax = plt.subplots(figsize=(9, 5))
+            fig = Figure(figsize=(9, 5))
+            canvas = FigureCanvas(fig)
+            ax = fig.add_subplot(111)
 
             if not languages:
                 ax.text(0.5, 0.5, "No language data", ha="center", va="center", fontsize=14)
@@ -73,11 +76,11 @@ class ChartService:
 
             fig.tight_layout()
             fig.savefig(str(path), dpi=100, transparent=False, facecolor="white")
-            plt.close(fig)
+            fig.clf()
             logger.debug("Rendered chart: %s", path)
             return path
         except Exception as exc:
-            plt.close("all")
+            fig.clf()
             logger.exception("Chart generation failed: %s", chart_type)
             raise ChartGenerationError(chart_type) from exc
         finally:
@@ -94,7 +97,9 @@ class ChartService:
                 return path
 
             self._apply_style()
-            fig, ax = plt.subplots(figsize=(9, 5))
+            fig = Figure(figsize=(9, 5))
+            canvas = FigureCanvas(fig)
+            ax = fig.add_subplot(111)
 
             top = sorted(repos, key=lambda r: r.stars, reverse=True)[:10]
             if not top:
@@ -109,11 +114,11 @@ class ChartService:
 
             fig.tight_layout()
             fig.savefig(str(path), dpi=100, transparent=False, facecolor="white")
-            plt.close(fig)
+            fig.clf()
             logger.debug("Rendered chart: %s", path)
             return path
         except Exception as exc:
-            plt.close("all")
+            fig.clf()
             logger.exception("Chart generation failed: %s", chart_type)
             raise ChartGenerationError(chart_type) from exc
         finally:
@@ -130,7 +135,9 @@ class ChartService:
                 return path
 
             self._apply_style()
-            fig, ax = plt.subplots(figsize=(9, 5))
+            fig = Figure(figsize=(9, 5))
+            canvas = FigureCanvas(fig)
+            ax = fig.add_subplot(111)
 
             weeks = list(stats.commits_per_week.keys())
             counts = list(stats.commits_per_week.values())
@@ -148,11 +155,11 @@ class ChartService:
 
             fig.tight_layout()
             fig.savefig(str(path), dpi=100, transparent=False, facecolor="white")
-            plt.close(fig)
+            fig.clf()
             logger.debug("Rendered chart: %s", path)
             return path
         except Exception as exc:
-            plt.close("all")
+            fig.clf()
             logger.exception("Chart generation failed: %s", chart_type)
             raise ChartGenerationError(chart_type) from exc
         finally:
@@ -169,7 +176,9 @@ class ChartService:
                 return path
 
             self._apply_style()
-            fig, ax = plt.subplots(figsize=(9, 5))
+            fig = Figure(figsize=(9, 5))
+            canvas = FigureCanvas(fig)
+            ax = fig.add_subplot(111)
 
             day_order = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
             hours = [str(h) for h in range(24)]
@@ -195,11 +204,11 @@ class ChartService:
 
             fig.tight_layout()
             fig.savefig(str(path), dpi=100, transparent=False, facecolor="white")
-            plt.close(fig)
+            fig.clf()
             logger.debug("Rendered chart: %s", path)
             return path
         except Exception as exc:
-            plt.close("all")
+            fig.clf()
             logger.exception("Chart generation failed: %s", chart_type)
             raise ChartGenerationError(chart_type) from exc
         finally:

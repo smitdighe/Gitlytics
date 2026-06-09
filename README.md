@@ -23,6 +23,14 @@
 
 ---
 
+<div align="center">
+ 
+[![Gitlytics Demo]](https://youtu.be/Y7gsLYVwugw)
+
+</div>
+
+---
+
 ## ✨ Features
 
 <table>

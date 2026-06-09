@@ -1,3 +1,4 @@
+import concurrent.futures
 import asyncio
 from datetime import datetime, timezone
 
@@ -25,8 +26,10 @@ def _build_profile_sync(
 
     top_repos = sorted(repos, key=lambda r: r.stargazers_count, reverse=True)[:10]
     all_weekly: list[dict] = []
-    for repo in top_repos:
-        all_weekly.extend(github_service.get_commit_activity(repo))
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        results = executor.map(github_service.get_commit_activity, top_repos)
+        for res in results:
+            all_weekly.extend(res)
 
     languages = analytics_service.compute_language_breakdown(repos_languages)
     commit_stats = analytics_service.compute_commit_stats(all_weekly)

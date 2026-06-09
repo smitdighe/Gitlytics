@@ -44,24 +44,17 @@
     </td>
   </tr>
   <tr><td colspan="3"><br/></td></tr>
-  <tr>
-    <td align="center" width="280">
-      <h3>⚡</h3>
-      <b>High Performance</b><br/>
-      <sub>Smart backend caching mechanisms to minimize GitHub API rate limits and speed up load times</sub><br/>
-    </td>
-    <td align="center" width="280">
-      <h3>🔐</h3>
-      <b>Authentication</b><br/>
-      <sub>Secure user registration, login, and robust JWT-based session management</sub><br/>
-    </td>
-    <td align="center" width="280">
-      <h3>📱</h3>
-      <b>Responsive UI</b><br/>
-      <sub>A modern, mobile-friendly interface built specifically with React and Tailwind CSS</sub><br/>
-    </td>
-  </tr>
 </table>
+
+---
+
+## 🔐 Authentication & Security
+
+- **JWT Access Tokens** — short-lived (15 min), stored in memory (Zustand), never in localStorage
+- **Refresh Tokens** — long-lived (7 days), SHA256-hashed before storage, sent via httpOnly cookies
+- **Token Rotation** — every refresh issues a new refresh token and revokes the old one
+- **bcrypt** — passwords hashed with bcrypt before storage, never stored in plaintext
+- **Rate limiting** — login endpoint limited to 5 requests/minute per IP via SlowAPI
 
 ---
 
@@ -82,7 +75,6 @@
 
 ```bash
 Gitlytics/
-|
 ├── frontend/
 │   ├── src/
 │   │   ├── api/             # Axios API configurations
@@ -96,7 +88,6 @@ Gitlytics/
 │   │   └── index.css
 │   ├── tailwind.config.js
 │   └── vite.config.ts
-|
 ├── backend/
 │   ├── api/
 │   │   ├── routes/          # FastAPI routers (auth, profile, charts)
@@ -107,7 +98,6 @@ Gitlytics/
 │   ├── utils/               # Helper functions and exceptions
 │   ├── main.py              # Application entry point
 │   └── requirements.txt
-|
 ├── .gitignore
 └── README.md
 
@@ -119,6 +109,9 @@ Gitlytics/
 ## ⚙️ Getting Started
 
 > 💡 **Want the full experience?** Because Gitlytics dives deep into commit histories and repository stats, you'll need to drop a GitHub Personal Access Token (PAT) in your `.env` to keep the API rate limits happy!
+
+### 🔑 Password Requirements
+Min 8 characters · Uppercase · Lowercase · Digit · Special char (`@$!%*?&`)
 
 ### Prerequisites
 
@@ -174,6 +167,13 @@ npm run dev
 
 > Frontend will be running at `http://localhost:5173`
 > ⚠️ Both the Vite server and the FastAPI server need to be running simultaneously for full functionality.
+
+---
+
+## ⚠️ Known Limitations
+- First profile fetch: 30–120s (GitHub stats API is slow). Cached for 1hr after first load.
+- Render free tier: spins down after 15min inactivity, ~30s cold start
+- Charts lost on Render restart (no persistent disk on free tier)
 
 ---
 

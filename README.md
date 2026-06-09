@@ -8,7 +8,9 @@
 ╚██████╔╝ ██║    ██║    ███████╗  ██║        ██║    ██║ ╚██████╗ ███████║
  ╚═════╝  ╚═╝    ╚═╝    ╚══════╝  ╚═╝        ╚═╝    ╚═╝  ╚═════╝ ╚══════╝
 </pre>
-  
+
+# Any GitHub, decoded.
+ 
 </div>
 
 ## Know any developer in 30 seconds.
@@ -125,7 +127,7 @@ Gitlytics/
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/smitdighe/gitlytics.git](https://github.com/smitdighe/gitlytics.git)
+git clone https://github.com/smitdighe/gitlytics.git
 cd gitlytics
 ```
 
@@ -172,3 +174,9 @@ npm run dev
 
 ---
 
+## 🔮 Future Improvements
+
+- **Project Filtering:** Advanced filters to analyze specific repositories or organizations.
+- **GSAP Animations:** Smooth, high-performance UI transitions and chart animations.
+
+---

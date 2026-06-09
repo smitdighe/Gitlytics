@@ -30,17 +30,17 @@
     <td align="center" width="280">
       <h3>📊</h3>
       <b>Visual Analytics</b><br/>
-      <sub>Beautiful charts for language distribution, commit frequency, and activity heatmaps</sub>
+      <sub>Beautiful charts for language distribution, commit frequency, and activity heatmaps</sub><br/>
     </td>
     <td align="center" width="280">
       <h3>🤼</h3>
       <b>Profile Comparison</b><br/>
-      <sub>Compare two GitHub profiles side-by-side to contrast stars, forks, and commit habits</sub>
+      <sub>Compare two GitHub profiles side-by-side to contrast stars, forks, and commit habits</sub><br/>
     </td>
     <td align="center" width="280">
       <h3>🔗</h3>
       <b>Shareable Dashboards</b><br/>
-      <sub>Generate secure, unique sharing links to show off your developer profile to others</sub>
+      <sub>Generate secure, unique sharing links to show off your developer profile to others</sub><br/>
     </td>
   </tr>
   <tr><td colspan="3"><br/></td></tr>
@@ -48,17 +48,17 @@
     <td align="center" width="280">
       <h3>⚡</h3>
       <b>High Performance</b><br/>
-      <sub>Smart backend caching mechanisms to minimize GitHub API rate limits and speed up load times</sub>
+      <sub>Smart backend caching mechanisms to minimize GitHub API rate limits and speed up load times</sub><br/>
     </td>
     <td align="center" width="280">
       <h3>🔐</h3>
       <b>Authentication</b><br/>
-      <sub>Secure user registration, login, and robust JWT-based session management</sub>
+      <sub>Secure user registration, login, and robust JWT-based session management</sub><br/>
     </td>
     <td align="center" width="280">
       <h3>📱</h3>
       <b>Responsive UI</b><br/>
-      <sub>A modern, mobile-friendly interface built specifically with React and Tailwind CSS</sub>
+      <sub>A modern, mobile-friendly interface built specifically with React and Tailwind CSS</sub><br/>
     </td>
   </tr>
 </table>

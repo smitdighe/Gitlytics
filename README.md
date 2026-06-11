@@ -19,6 +19,8 @@
 
 **Gitlytics** is a powerful, full-stack GitHub profile analytics dashboard — built to give developers visual insights into their commit activity, analyze their technical stack, compare profiles, and share their coding journey.
 
+<br />
+
 [![Gitlytics Demo](https://img.youtube.com/vi/Y7gsLYVwugw/maxresdefault.jpg)](https://www.youtube.com/watch?v=Y7gsLYVwugw)
 
 </div>
